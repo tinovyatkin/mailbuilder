@@ -1,0 +1,63 @@
+{
+  "name": "mailbuilder",
+  "version": "0.0.1",
+  "description": "Node.JS module for generating e-mail messages that can be streamed to SMTP or GMail raw API",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinovyatkin/mailbuilder.git"
+  },
+  "keywords": [
+    "email",
+    "mime",
+    "gmail"
+  ],
+  "author": "Tino Vyatkin <tino@vtkn.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tinovyatkin/mailbuilder/issues"
+  },
+  "homepage": "https://github.com/tinovyatkin/mailbuilder#readme",
+  "devDependencies": {
+    "@destinationstransfers/eslint-config": "latest",
+    "@types/jest": "latest",
+    "eslint": "latest",
+    "eslint-plugin-node": "latest",
+    "jest": "latest",
+    "mailparser": "^2.2.0",
+    "moment": "^2.22.1"
+  },
+  "files": [
+    "lib",
+    "index.js"
+  ],
+  "directories": {
+    "test": "__tests__"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "testEnvironment": "node",
+    "verbose": true
+  },
+  "eslintConfig": {
+    "plugins": [
+      "node"
+    ],
+    "extends": [
+      "@destinationstransfers",
+      "plugin:node/recommended"
+    ],
+    "env": {
+      "node": true
+    },
+    "parserOptions": {
+      "sourceType": "script"
+    }
+  }
+}
