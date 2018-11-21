@@ -30,8 +30,8 @@
     "eslint": "latest",
     "eslint-plugin-node": "latest",
     "jest": "latest",
-    "mailparser": "^2.2.0",
-    "moment": "^2.22.1"
+    "mailparser": "2.2.0",
+    "moment": "2.22.1"
   },
   "files": [
     "lib",
