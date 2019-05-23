@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`email message building simpleHtmlEmail 1`] = `
-"From: \\"John \\\\\\"Cool\\\\\\" Doe\\" <john@doe.com>
-To: =?utf-8?B?0JLQsNGB0Y8g0J/Rg9C/0LrQuNC9IDx2YXN5YUBwdXBraW4uY29tPg==?=
-Content-Type: text/html; charset=utf-8
+"Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8Bit
+From: \\"John \\\\\\"Cool\\\\\\" Doe\\" <john@doe.com>
+To: =?utf-8?B?0JLQsNGB0Y8g0J/Rg9C/0LrQuNC9?= <vasya@pupkin.com>
 MIME-Version: 1.0
 Bcc: One Spy <spy@kremlin.ru>, Big Eye <fbi@whitehouse.org>
 Subject: =?utf-8?B?U29tZSDwn5KEIHN1YmplY3Q=?=

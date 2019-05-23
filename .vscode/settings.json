@@ -1,5 +1,9 @@
 {
   "editor.formatOnSave": true,
   "javascript.format.enable": false,
-  "javascript.validate.enable": false
+  "javascript.validate.enable": false,
+  "deepscan.enable": true,
+  "npm.enableScriptExplorer": true,
+  "javascript.implicitProjectConfig.checkJs": true,
+  "javascript.referencesCodeLens.enabled": true
 }

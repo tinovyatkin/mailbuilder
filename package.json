@@ -1,10 +1,11 @@
 {
   "name": "mailbuilder",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Node.JS module for generating e-mail messages that can be streamed to SMTP or GMail raw API",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint \"{lib,__tests__}/**/*.{ts,js}\" --ignore-pattern \"*test*\" --ignore-path .gitignore"
   },
   "engines": {
     "node": ">=8"
@@ -25,13 +26,17 @@
   },
   "homepage": "https://github.com/tinovyatkin/mailbuilder#readme",
   "devDependencies": {
-    "@destinationstransfers/eslint-config": "latest",
+    "@destinationstransfers/eslint-plugin": "2.4.9",
     "@types/jest": "latest",
-    "eslint": "latest",
-    "eslint-plugin-node": "latest",
-    "jest": "latest",
+    "@types/node": "12.0.2",
+    "@typescript-eslint/eslint-plugin": "1.9.0",
+    "@typescript-eslint/parser": "1.9.0",
+    "eslint": "5.16.0",
+    "jest": "24.8.0",
+    "jest-junit": "6.4.0",
     "mailparser": "2.7.1",
-    "moment": "2.24.0"
+    "moment": "2.24.0",
+    "typescript": "3.4.5"
   },
   "files": [
     "lib",
@@ -42,22 +47,13 @@
   },
   "jest": {
     "collectCoverage": true,
+    "coverageReporters": [
+      "text",
+      "json",
+      "cobertura",
+      "lcov"
+    ],
     "testEnvironment": "node",
     "verbose": true
-  },
-  "eslintConfig": {
-    "plugins": [
-      "node"
-    ],
-    "extends": [
-      "@destinationstransfers",
-      "plugin:node/recommended"
-    ],
-    "env": {
-      "node": true
-    },
-    "parserOptions": {
-      "sourceType": "script"
-    }
   }
 }
