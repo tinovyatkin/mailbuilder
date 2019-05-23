@@ -5,7 +5,7 @@ const { simpleParser } = require('mailparser');
 const { simpleHtmlEmail } = require('../lib/build');
 
 describe('email message building', () => {
-  test('simpleHtmlEmail', async () => {
+  it('simpleHtmlEmail', async () => {
     const testMsg = {
       from: { name: 'John "Cool" Doe', address: 'john@doe.com' },
       to: [{ name: 'Вася Пупкин', address: 'vasya@pupkin.com' }],
