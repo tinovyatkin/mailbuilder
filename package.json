@@ -28,7 +28,7 @@
   "devDependencies": {
     "@destinationstransfers/eslint-plugin": "2.9.9",
     "@types/jest": "latest",
-    "@types/node": "12.7.8",
+    "@types/node": "12.7.9",
     "@typescript-eslint/eslint-plugin": "2.3.2",
     "@typescript-eslint/parser": "2.3.2",
     "eslint": "6.5.1",
