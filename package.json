@@ -36,7 +36,7 @@
     "jest-junit": "8.0.0",
     "mailparser": "2.7.1",
     "moment": "2.24.0",
-    "typescript": "3.6.3"
+    "typescript": "3.6.4"
   },
   "files": [
     "lib",
