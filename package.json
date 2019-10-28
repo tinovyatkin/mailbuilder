@@ -34,7 +34,7 @@
     "eslint": "6.6.0",
     "jest": "25.0.0",
     "jest-junit": "9.0.0",
-    "mailparser": "2.7.3",
+    "mailparser": "2.7.4",
     "moment": "2.24.0",
     "typescript": "3.6.4"
   },
