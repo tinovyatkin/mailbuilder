@@ -32,7 +32,7 @@
     "@typescript-eslint/eslint-plugin": "2.25.0",
     "@typescript-eslint/parser": "2.25.0",
     "eslint": "6.8.0",
-    "jest": "25.2.1",
+    "jest": "25.2.2",
     "jest-junit": "10.0.0",
     "mailparser": "2.7.7",
     "moment": "2.24.0",
