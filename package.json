@@ -35,7 +35,7 @@
     "jest": "25.5.3",
     "jest-junit": "10.0.0",
     "mailparser": "2.7.7",
-    "moment": "2.25.0",
+    "moment": "2.25.1",
     "typescript": "3.8.3"
   },
   "files": [
