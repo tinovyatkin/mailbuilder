@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/tinovyatkin/mailbuilder#readme",
   "devDependencies": {
-    "@destinationstransfers/eslint-plugin": "2.9.166",
+    "@destinationstransfers/eslint-plugin": "2.9.167",
     "@types/jest": "latest",
     "@types/node": "12.12.47",
     "@typescript-eslint/eslint-plugin": "3.3.0",
