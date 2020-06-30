@@ -1,0 +1,30 @@
+name: Node.js Package
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+
+      - run: yarn install --frozen-lockfile --ignore-optional --non-interactive --silent
+
+      - run: yarn test
+
+      - uses: codecov/codecov-action@v1
+        with:
+          file: ./coverage/coverage-final.json
+
+      - run: npx npmPkgJsonLint .
+
+      - run: yarn publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}

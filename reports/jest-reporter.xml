@@ -1,0 +1,14 @@
+<testExecutions version="1">
+<file path="__tests__/header.test.ts">
+<testCase name="header generating functions isAscii" duration="3" />
+<testCase name="header generating functions escapeNameString" duration="0" />
+<testCase name="header generating functions utf8encode" duration="2" />
+<testCase name="header generating functions encodeIfNeeded" duration="1" />
+</file>
+<file path="__tests__/rfc822date.ts">
+<testCase name="rfc822 date format" duration="4" />
+</file>
+<file path="__tests__/build.test.ts">
+<testCase name="email message building simpleHtmlEmail" duration="36" />
+</file>
+</testExecutions>

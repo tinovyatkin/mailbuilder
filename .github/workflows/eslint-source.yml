@@ -1,0 +1,27 @@
+name: Lint
+
+on:
+  pull_request:
+    paths:
+      - '*.ts'
+      - '*.js'
+      - '**eslint**'
+      - 'yarn.lock'
+      - '.github/workflows/eslint-source.yml'
+jobs:
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    env:
+      HUSKY_SKIP_INSTALL: true
+      TERM: xterm-256color
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: yarn install --frozen-lockfile --ignore-scripts --ignore-optional --non-interactive --silent --production=false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run ESLint
+        run: yarn lint
