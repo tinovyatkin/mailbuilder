@@ -7,7 +7,7 @@
 
 // This will output time like Tue, 30 Jun 2020, 19:18:52 UTC
 // so we only need to replace UTC with GMT and remove last comma
-const Formatter = new Intl.DateTimeFormat('en-AU', {
+const Formatter = new Intl.DateTimeFormat('en-GB', {
   minute: '2-digit',
   hour12: false,
   hour: '2-digit',
