@@ -5,9 +5,7 @@
  * @see {@link https://github.com/tjconcept/js-rfc822-date}
  */
 
-// This will output time like Tue, 30 Jun 2020, 19:18:52 UTC
-// so we only need to replace UTC with GMT and remove last comma
-const Formatter = new Intl.DateTimeFormat('en-GB', {
+const Formatter = new Intl.DateTimeFormat('en-US', {
   minute: '2-digit',
   hour12: false,
   hour: '2-digit',
@@ -17,11 +15,63 @@ const Formatter = new Intl.DateTimeFormat('en-GB', {
   weekday: 'short',
   year: 'numeric',
   timeZone: 'UTC',
-  timeZoneName: 'short',
 });
 
 export function rfc822dateString(date: Date): string {
-  // removing last comma between day and time
-  // and replacing UTC with GMT
-  return Formatter.format(date).replace(/^(.+)(,)([^,]+)(\sUTC)$/, '$1$3 GMT');
+  // targeted result is
+  // [weekday, ',', day, ' ', month, ' ', year, ' ', hours, ':', mins, ':', seconds, ' ', 'GMT'].join()
+  return Formatter.formatToParts(date)
+    .reduce(
+      (res, { type, value }, idx) => {
+        if (res[idx] === type) res[idx] === value;
+        switch (type) {
+          case 'weekday':
+            res[0] = value;
+            break;
+
+          case 'day':
+            res[2] = value;
+            break;
+
+          case 'month':
+            res[4] = value;
+            break;
+
+          case 'year':
+            res[6] = value;
+            break;
+
+          case 'hour':
+            res[8] = value;
+            break;
+
+          case 'minute':
+            res[10] = value;
+            break;
+
+          case 'second':
+            res[12] = value;
+            break;
+        }
+        return res;
+      },
+      [
+        'weekday',
+        ', ',
+        'day',
+        ' ',
+        'month',
+        ' ',
+        'year',
+        ' ',
+        'hour',
+        ':',
+        'minute',
+        ':',
+        'second',
+        ' ',
+        'GMT',
+      ],
+    )
+    .join('');
 }
