@@ -4,7 +4,7 @@ import {
   escapeNameString,
   utf8encode,
   encodeIfNeeded,
-} from '../dist/lib/header.js';
+} from '../dist/header.js';
 
 const { expect } = chai;
 

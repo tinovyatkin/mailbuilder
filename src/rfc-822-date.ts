@@ -22,8 +22,7 @@ export function rfc822dateString(date: Date): string {
   // [weekday, ',', day, ' ', month, ' ', year, ' ', hours, ':', mins, ':', seconds, ' ', 'GMT'].join()
   return Formatter.formatToParts(date)
     .reduce(
-      (res, { type, value }, idx) => {
-        if (res[idx] === type) res[idx] === value;
+      (res, { type, value }) => {
         switch (type) {
           case 'weekday':
             res[0] = value;

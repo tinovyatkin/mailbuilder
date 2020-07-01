@@ -1,4 +1,4 @@
-import { rfc822dateString } from '../dist/lib/rfc-822-date.js';
+import { rfc822dateString } from '../dist/rfc-822-date.js';
 import chai from 'chai';
 
 const { expect } = chai;

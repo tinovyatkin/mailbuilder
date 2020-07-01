@@ -3,10 +3,5 @@
   "compilerOptions": {
     "allowJs": true
   },
-  "include": [
-    "lib",
-    "./index.ts",
-    "test/*.test.js",
-    "test/cjs/mailbuilder.test.cjs"
-  ]
+  "include": ["src", "test/*.test.js", "test/cjs/mailbuilder.test.cjs"]
 }
