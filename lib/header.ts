@@ -34,7 +34,7 @@ export function shouldEncodedOrEscapeAddresses(
   addrArray: AddressesArray,
 ): boolean {
   return addrArray.some(
-    ({ name, address }) => !isAscii(name) || !isAscii(address),
+    ({ name, address }) => (name && !isAscii(name)) || !isAscii(address),
   );
 }
 
@@ -73,13 +73,14 @@ export function utf8encode(str: string): string {
  */
 export function getAddressesHeader(addrArray: AddressesArray): string {
   return addrArray
-    .map(
-      ({ name, address }) =>
-        `${
-          isAscii(name)
-            ? escapeNameString(name)
-            : utf8encode(name.normalize('NFC'))
-        } <${address}>`,
+    .map(({ name, address }) =>
+      name
+        ? `${
+            isAscii(name)
+              ? escapeNameString(name)
+              : utf8encode(name.normalize('NFC'))
+          } <${address}>`
+        : address,
     )
     .join(', ');
 }

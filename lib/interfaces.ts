@@ -1,13 +1,13 @@
 interface NamedAddress {
-  name: string;
+  name?: string;
   address: string;
 }
 export type AddressesArray = NamedAddress[];
 
 export interface MailBuildingParams {
-  from: NamedAddress;
-  to: NamedAddress[];
-  bcc?: NamedAddress[];
+  from: NamedAddress | string;
+  to: AddressesArray | string;
+  bcc?: AddressesArray | string;
   date?: Date;
   subject?: string;
   html?: string;
