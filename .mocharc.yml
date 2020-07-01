@@ -4,9 +4,4 @@ color: true
 recursive: true
 require:
   - 'source-map-support/register'
-#   - 'ts-node/register/transpile-only'
 full-trace: true
-extension:
-  - 'ts'
-
-spec: '**/*.test.{js,cjs}'
