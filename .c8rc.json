@@ -1,9 +1,5 @@
 {
-  "check-coverage": true,
-  "branches": 78,
-  "lines": 93,
-  "functions": 87,
-  "statements": 93,
+  "check-coverage": false,
   "clean": true,
   "reporter": ["json", "text", "text-summary"]
 }
