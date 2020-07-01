@@ -1,0 +1,7 @@
+check-leaks: true
+v8-stack-trace-limit: 100
+color: true
+recursive: true
+require:
+  - 'source-map-support/register'
+full-trace: true

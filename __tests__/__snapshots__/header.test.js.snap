@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`header generating functions utf8encode 1`] = `"=?utf-8?B?8J+YjiAtIGNvb2wh?="`;
-
-exports[`header generating functions utf8encode 2`] = `"=?utf-8?B?0JLQsNGB0LjQu9C40Lkg0J/Rg9C/0LrQuNC9IDx2YXNAcHVwLmluPg==?="`;

@@ -1,0 +1,5 @@
+{
+  "*.js": ["eslint --fix --quiet -f visualstudio", "prettier --write"],
+  ".env": ["git rm"],
+  "*.{yaml,yml,md,json}": ["prettier --write"]
+}

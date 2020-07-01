@@ -1,0 +1,72 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "project": "./tsconfig.all.json",
+    "sourceType": "module",
+    "extraFileExtensions": ".cjs"
+  },
+  "plugins": ["@typescript-eslint"],
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": false
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "plugin:node/recommended"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "rules": {
+    "node/no-missing-import": "off",
+    "@typescript-eslint/require-await": "off",
+    "node/no-unsupported-features/es-syntax": [
+      "error",
+      {
+        "ignores": ["modules"]
+      }
+    ],
+    "no-empty": ["error", { "allowEmptyCatch": true }]
+  },
+  "settings": {
+    "node": {
+      "tryExtensions": [".js", ".json", ".ts"]
+    }
+  },
+  "overrides": [
+    {
+      "files": "**/*.js",
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
+    },
+    {
+      "files": ["*.test.js"],
+      "plugins": ["mocha"],
+      "extends": ["plugin:mocha/recommended"],
+      "env": {
+        "es6": true,
+        "mocha": true
+      },
+      "rules": {
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "mocha/no-global-tests": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/ban-ts-ignore": "off",
+        "import/order": "off", // may interfere with mocking,
+        "max-nested-callbacks": "off",
+        "max-lines": "off"
+      }
+    }
+  ]
+}

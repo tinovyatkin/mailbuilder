@@ -1,18 +1,13 @@
-'use strict';
+import { rfc822dateString } from './rfc-822-date.js';
+import { getAddressesHeader, encodeIfNeeded } from './header.js';
 
-const rfc822dateString = require('./rfc-822-date');
-const { getAddressesHeader, encodeIfNeeded } = require('./header');
-
-/**
- * @typedef {{name: string, address: string}} AddressObject
- * @typedef {{ from: AddressObject, to: AddressObject[], bcc?: AddressObject[], date?: Date, subject?: string, html?: string, contentType?: string, attachments?: {}[] }} MailBuildingParams
- */
+import type { MailBuildingParams } from './interfaces';
 
 /**
  * @param {MailBuildingParams} options
  * @returns {string}
  */
-function buildHeaders(options) {
+export function buildHeaders(options: MailBuildingParams): string {
   // require required
   if (typeof options.from !== 'object')
     throw new TypeError(
@@ -33,7 +28,6 @@ function buildHeaders(options) {
   if (options.subject) res.push(`Subject: ${encodeIfNeeded(options.subject)}`);
   return res.join('\n');
 }
-module.exports.buildHeaders = buildHeaders;
 
 /**
  * Returns complete MIME-body of email message with only HTML body
@@ -41,7 +35,7 @@ module.exports.buildHeaders = buildHeaders;
  * @param {MailBuildingParams} params
  * @returns {string}
  */
-function simpleHtmlEmail(params) {
+export function simpleHtmlEmail(params: MailBuildingParams): string {
   if ('attachments' in params)
     throw new TypeError(
       `This function doesn't support building messages with attachments`,
@@ -52,4 +46,3 @@ function simpleHtmlEmail(params) {
     );
   return `${buildHeaders(params)}\n\n${params.html}`;
 }
-module.exports.simpleHtmlEmail = simpleHtmlEmail;

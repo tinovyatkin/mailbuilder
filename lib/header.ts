@@ -1,27 +1,11 @@
-'use strict';
-
-/**
- * @typedef {{ name: string, address: string }[]} AddressesArray
- */
-
-const MAX_ASCII_CHAR_CODE = 127;
+import type { AddressesArray } from './interfaces';
 
 /**
  * Checks if given string contains only ASCII characters
  *
- * @see {@link http://stackoverflow.com/a/94049/1928484}
- * @see {@link https://github.com/ariporad/is-ascii/blob/master/index.js}
- *
- * @param {string} str
- * @returns {boolean}
+ * @see {@link https://catonmat.net/my-favorite-regex}
  */
-function isAscii(str) {
-  for (let i = 0, strLen = str.length; i < strLen; ++i) {
-    if (str.charCodeAt(i) > MAX_ASCII_CHAR_CODE) return false;
-  }
-  return true;
-}
-module.exports.isAscii = isAscii;
+export const isAscii = RegExp.prototype.test.bind(/^[ -~]*$/);
 
 /**
  * Escapes disallowed ASCII characters in name-related headers, To:, From:, Bcc:
@@ -31,7 +15,7 @@ module.exports.isAscii = isAscii;
  * @param {string} str
  * @returns {string}
  */
-function escapeNameString(str) {
+export function escapeNameString(str: string): string {
   if (!/^[\w ']*$/.test(str)) {
     if (/^[\x20-\x7e]*$/.test(str)) {
       return `"${str.replace(/(["\\])/g, '\\$1')}"`;
@@ -39,7 +23,6 @@ function escapeNameString(str) {
   }
   return str;
 }
-module.exports.escapeNameString = escapeNameString;
 
 /**
  * Checks whether given addresses array may be just escaped, or need to encoded
@@ -47,12 +30,13 @@ module.exports.escapeNameString = escapeNameString;
  * @param {AddressesArray} addrArray
  * @returns {boolean} - true if need to be encoded
  */
-function shouldEncodedOrEscapeAddresses(addrArray) {
+export function shouldEncodedOrEscapeAddresses(
+  addrArray: AddressesArray,
+): boolean {
   return addrArray.some(
     ({ name, address }) => !isAscii(name) || !isAscii(address),
   );
 }
-module.exports.shouldEncodedOrEscapeAddresses = shouldEncodedOrEscapeAddresses;
 
 /**
  * Returns given string as Base64 UTF-8 encoded header
@@ -62,10 +46,9 @@ module.exports.shouldEncodedOrEscapeAddresses = shouldEncodedOrEscapeAddresses;
  * @param {string} str
  * @returns {string}
  */
-function utf8encode(str) {
+export function utf8encode(str: string): string {
   return `=?utf-8?B?${Buffer.from(str).toString('base64')}?=`;
 }
-module.exports.utf8encode = utf8encode;
 
 /**
  * Builds RFC 2822 name-addr string based on address objects.
@@ -88,7 +71,7 @@ module.exports.utf8encode = utf8encode;
  * @param {AddressesArray} addrArray
  * @returns {string}
  */
-function getAddressesHeader(addrArray) {
+export function getAddressesHeader(addrArray: AddressesArray): string {
   return addrArray
     .map(
       ({ name, address }) =>
@@ -100,7 +83,6 @@ function getAddressesHeader(addrArray) {
     )
     .join(', ');
 }
-module.exports.getAddressesHeader = getAddressesHeader;
 
 /**
  * Encodes header to UTF8 if required or returns as is
@@ -108,8 +90,7 @@ module.exports.getAddressesHeader = getAddressesHeader;
  * @param {string} str
  * @returns {string}
  */
-function encodeIfNeeded(str) {
+export function encodeIfNeeded(str: string): string {
   if (isAscii(str)) return str;
   return utf8encode(str);
 }
-module.exports.encodeIfNeeded = encodeIfNeeded;

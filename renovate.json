@@ -10,9 +10,9 @@
   "respectLatest": false,
   "labels": ["dependencies"],
   "timezone": "America/Santo_Domingo",
+  "automerge": true,
   "pin": {
-    "requiredStatusChecks": null,
-    "automerge": true
+    "requiredStatusChecks": null
   },
   "vulnerabilityAlerts": {
     "labels": ["dependencies", "security"]
