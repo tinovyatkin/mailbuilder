@@ -2,7 +2,7 @@
 
 ## Simplified email message composition library for Node.js
 
-![npm](https://img.shields.io/npm/v/mailbuilder.svg) [![codecov](https://codecov.io/gh/tinovyatkin/mailbuilder/branch/master/graph/badge.svg)](https://codecov.io/gh/tinovyatkin/mailbuilder) ![node](https://img.shields.io/node/v/mailbuilder.svg) ![Typed with TypeScript](https://camo.githubusercontent.com/41c68e9f29c6caccc084e5a147e0abd5f392d9bc/68747470733a2f2f62616467656e2e6e65742f62616467652f547970655363726970742f7374726963742532302546302539462539322541412f626c7565)
+[![npm](https://img.shields.io/npm/v/mailbuilder.svg)](https://www.npmjs.com/package/mailbuilder) [![codecov](https://codecov.io/gh/tinovyatkin/mailbuilder/branch/master/graph/badge.svg)](https://codecov.io/gh/tinovyatkin/mailbuilder) ![node](https://img.shields.io/node/v/mailbuilder.svg) ![Typed with TypeScript](https://camo.githubusercontent.com/41c68e9f29c6caccc084e5a147e0abd5f392d9bc/68747470733a2f2f62616467656e2e6e65742f62616467652f547970655363726970742f7374726963742532302546302539462539322541412f626c7565)
 
 This is simple library (no dependencies) to generate HTML-only email messages (without attachments) from given parameters. Supports Unicode for names and subject, but encodes only when it's actually required:
 
