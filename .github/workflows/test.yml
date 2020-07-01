@@ -15,25 +15,29 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [14.x, 12.x, 10.x]
+        node: [14, 12, 10]
 
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 1
+
       - uses: actions/setup-node@v2-beta
         with:
           node-version: ${{ matrix.node }}
       - run: yarn install --frozen-lockfile --ignore-optional --non-interactive --silent
+
       - run: yarn test
+        if: matrix.node != 10
+
+      - run: yarn test --spec "**/*.test.cjs"
+        if: matrix.node == 10
 
       - uses: codecov/codecov-action@v1
         with:
           file: ./coverage/coverage-final.json
       # - name: Save ESLint results as JSON for sonar
       #   run: yarn lint --format json -o reports/eslint-results.json
-      #   if: matrix.os == 'ubuntu-latest' && matrix.node == '12.x'
+      #   if: matrix.os == 'ubuntu-latest' && matrix.node == 12
       # - name: SonarCloud Scan
       #   run: |
       #     curl --create-dirs -sSLo .sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
