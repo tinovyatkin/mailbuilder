@@ -1,6 +1,9 @@
 name: CI
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
@@ -20,34 +23,46 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # need that for Sonar
 
       - uses: actions/setup-node@v2-beta
         with:
           node-version: ${{ matrix.node }}
       - run: yarn install --frozen-lockfile --ignore-optional --non-interactive --silent
 
-      - run: yarn test
+      - name: Install Sonar reporter for Mocha
+        if: matrix.node != 10
+        run: yarn add --dev @danmasta/mocha-sonar
+
+      - run: yarn test -R @danmasta/mocha-sonar
         if: matrix.node != 10
 
       - run: yarn test --spec "**/*.test.cjs"
         if: matrix.node == 10
 
       - uses: codecov/codecov-action@v1
+        if: matrix.node == 14
         with:
           file: ./coverage/coverage-final.json
-      # - name: Save ESLint results as JSON for sonar
-      #   run: yarn lint --format json -o reports/eslint-results.json
-      #   if: matrix.os == 'ubuntu-latest' && matrix.node == 12
-      # - name: SonarCloud Scan
-      #   run: |
-      #     curl --create-dirs -sSLo .sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
-      #     unzip -o .sonar/sonar-scanner.zip -d .sonar/
-      #     .sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux/bin/sonar-scanner \
-      #       -Dsonar.login=${{ secrets.SONAR_LOGIN }}
-      #   if: matrix.os == 'ubuntu-latest' && matrix.node == '12.x'
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      #     SONAR_SCANNER_VERSION: '4.2.0.1873'
-      #     # https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner
-      #     SONAR_SCANNER_OPTS: -Xmx1024m
+
+      - name: Install latest Sonar Scanner
+        if: matrix.node == 12
+        run: |
+          sudo apt-get install -y -qq --no-install-recommends lynx curl bsdtar
+          LATEST_SONAR=$(lynx --dump https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/ | grep linux.zip$ | tail -1 | cut -c 7-)
+          curl --create-dirs -sSLo .sonar/sonar-scanner.zip $LATEST_SONAR
+          bsdtar --strip-components=1 -xvf .sonar/sonar-scanner.zip -C .sonar
+
+      - name: Save ESLint results as JSON for sonar
+        if: matrix.node == 12
+        run: yarn lint --format json -o coverage/eslint-results.json
+
+      - name: Run Sonar Scanner
+        if: matrix.node == 12
+        run: .sonar/bin/sonar-scanner
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          # https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner
+          SONAR_SCANNER_OPTS: -Xmx1024m

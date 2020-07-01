@@ -1,5 +1,3 @@
 {
-  "check-coverage": false,
-  "clean": true,
-  "reporter": ["json", "text", "text-summary"]
+  "reporter": ["json", "text", "text-summary", "lcovonly"]
 }
