@@ -39,13 +39,14 @@ jobs:
         if: matrix.node == 10
 
       - uses: codecov/codecov-action@v1
+        if: matrix.node == 14
         with:
           file: ./coverage/coverage-final.json
 
       - name: Install latest Sonar Scanner
         if: matrix.node == 12
         run: |
-          apt-get install -y -qq --no-install-recommends lynx curl bsdtar
+          sudo apt-get install -y -qq --no-install-recommends lynx curl bsdtar
           LATEST_SONAR=$(lynx --dump https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/ | grep linux.zip$ | tail -1 | cut -c 7-)
           curl --create-dirs -sSLo .sonar/sonar-scanner.zip $LATEST_SONAR
           bsdtar --strip-components=1 -xvf .sonar/sonar-scanner.zip -C .sonar
