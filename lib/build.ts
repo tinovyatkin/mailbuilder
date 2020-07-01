@@ -9,23 +9,40 @@ import type { MailBuildingParams } from './interfaces';
  */
 export function buildHeaders(options: MailBuildingParams): string {
   // require required
-  if (typeof options.from !== 'object')
+  if (typeof options.from !== 'object' && typeof options.from !== 'string')
     throw new TypeError(
-      `Parameter "from" is required and must be object with name/address properties`,
+      `Parameter "from" is required and must be either string or object with name/address properties`,
     );
-  if (!Array.isArray(options.to))
-    throw new TypeError('Parameter "to" must be an array');
+
+  if (!Array.isArray(options.to) && typeof options.to !== 'string')
+    throw new TypeError(
+      'Parameter "to" must be either a single email address or an array',
+    );
+
   const res = [
     `Content-Type: ${options.contentType || 'text/html; charset=utf-8'}`,
     'Content-Transfer-Encoding: 8Bit',
-    `From: ${getAddressesHeader([options.from])}`,
-    `To: ${getAddressesHeader(options.to)}`,
+    `From: ${
+      typeof options.from === 'string'
+        ? options.from
+        : getAddressesHeader([options.from])
+    }`,
+    `To: ${
+      typeof options.to === 'string'
+        ? options.to
+        : getAddressesHeader(options.to)
+    }`,
     'MIME-Version: 1.0',
   ];
+
   if (options.date) res.push(`Date: ${rfc822dateString(options.date)}`);
+
   if (Array.isArray(options.bcc))
     res.push(`Bcc: ${getAddressesHeader(options.bcc)}`);
+  else if (typeof options.bcc === 'string') res.push(`Bcc: ${options.bcc}`);
+
   if (options.subject) res.push(`Subject: ${encodeIfNeeded(options.subject)}`);
+
   return res.join('\n');
 }
 

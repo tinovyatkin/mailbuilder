@@ -8,10 +8,7 @@ describe('mailbuilder CommonJS output test', function () {
     const testMsg = {
       from: { name: 'John "Cool" Doe', address: 'john@doe.com' },
       to: [{ name: 'Вася Пупкин', address: 'vasya@pupkin.com' }],
-      bcc: [
-        { name: 'One Spy', address: 'spy@kremlin.ru' },
-        { name: 'Big Eye', address: 'fbi@whitehouse.org' },
-      ],
+      bcc: 'spy@kremlin.ru',
       subject: 'Some 💄 subject',
       html: `This is our <b>html</b> message content
       It's also <i>multiline</i> just in case`,
@@ -23,7 +20,7 @@ Content-Transfer-Encoding: 8Bit
 From: "John \\"Cool\\" Doe" <john@doe.com>
 To: =?utf-8?B?0JLQsNGB0Y8g0J/Rg9C/0LrQuNC9?= <vasya@pupkin.com>
 MIME-Version: 1.0
-Bcc: One Spy <spy@kremlin.ru>, Big Eye <fbi@whitehouse.org>
+Bcc: spy@kremlin.ru
 Subject: =?utf-8?B?U29tZSDwn5KEIHN1YmplY3Q=?=
 
 This is our <b>html</b> message content
@@ -41,7 +38,14 @@ This is our <b>html</b> message content
       `${testMsg.to[0].name} <${testMsg.to[0].address}>`,
     );
     expect(parsed.subject).to.equal(testMsg.subject);
-    expect(parsed.bcc).to.have.property('value').that.deep.equal(testMsg.bcc);
+    expect(parsed.bcc)
+      .to.have.property('value')
+      .that.deep.equal([
+        {
+          address: testMsg.bcc,
+          name: '',
+        },
+      ]);
     expect(parsed.html).to.equal(testMsg.html);
   });
 });
