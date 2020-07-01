@@ -16,12 +16,13 @@
   "main": "./dist/cjs/index.js",
   "files": [
     "dist/**/*.d.ts",
-    "dist/**/*.js"
+    "dist/**/*.js",
+    "dist/cjs/package.json"
   ],
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "tsc",
-    "postbuild": "tsc -p tsconfig.cjs.json && cp test/cjs/package.json dist/cjs/",
+    "postbuild": "tsc -p tsconfig.cjs.json && cp -f test/cjs/package.json dist/cjs/",
     "lint": "eslint --ext=ts,js .",
     "prepublishOnly": "yarn build",
     "pretest": "yarn build",
