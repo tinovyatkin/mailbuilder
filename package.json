@@ -20,7 +20,7 @@
     "dist/cjs/package.json"
   ],
   "scripts": {
-    "prebuild": "rm -rf dist",
+    "prebuild": "rm -rf dist coverage",
     "build": "tsc",
     "postbuild": "tsc -p tsconfig.cjs.json && cp -f test/cjs/package.json dist/cjs/",
     "lint": "eslint --ext=ts,js .",
