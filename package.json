@@ -34,7 +34,7 @@
     "@types/mocha": "8.0.1",
     "@typescript-eslint/eslint-plugin": "3.7.1",
     "@typescript-eslint/parser": "3.7.1",
-    "c8": "7.2.1",
+    "c8": "7.3.0",
     "chai": "4.2.0",
     "eslint": "7.6.0",
     "eslint-config-prettier": "6.11.0",
