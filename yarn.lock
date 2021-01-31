@@ -95,10 +95,10 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.5.tgz#dcce4430e64b443ba8945f0290fb564ad5bac6dd"
   integrity sha512-7+2BITlgjgDhH0vvwZU/HZJVyk+2XUlvxXe8dFMedNX/aMkaOq++rMAFXc0tM7ij15QaWlbdQASBR9dihi+bDQ==
 
-"@types/mailparser@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@types/mailparser/-/mailparser-3.0.0.tgz#a3cc643e5f2abea3f5a68b59a126b6313ef317ef"
-  integrity sha512-LsGznUos/+iY83fVjoduIr3PUGfkgtcEvR7HqXpmiP4TsdZo6jf31EcmjDcROmluj1PDMhWRXOxy4ndkx78wUQ==
+"@types/mailparser@3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@types/mailparser/-/mailparser-3.0.1.tgz#47fae7da825521a7aaa49c7da433a960b6d31f3e"
+  integrity sha512-aQiqTLaOtusgHA+svfW33iaDEwyIjLyakkpOs091/NTL6riQHkBhT4xOW8Esaq8omt5qjLVRz/zlk3NDON68bw==
   dependencies:
     "@types/node" "*"
 
