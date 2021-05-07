@@ -29,7 +29,7 @@
     "test": "c8 mocha"
   },
   "devDependencies": {
-    "@types/chai": "4.2.14",
+    "@types/chai": "4.2.17",
     "@types/mailparser": "3.0.1",
     "@types/mocha": "8.2.2",
     "@typescript-eslint/eslint-plugin": "4.15.1",
