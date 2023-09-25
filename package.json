@@ -38,7 +38,7 @@
     "chai": "4.3.8",
     "eslint": "8.46.0",
     "eslint-config-prettier": "9.0.0",
-    "eslint-plugin-mocha": "10.1.0",
+    "eslint-plugin-mocha": "10.2.0",
     "eslint-plugin-node": "11.1.0",
     "husky": "8.0.3",
     "lint-staged": "14.0.1",
